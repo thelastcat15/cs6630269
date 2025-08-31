@@ -1,0 +1,12 @@
+form {
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}

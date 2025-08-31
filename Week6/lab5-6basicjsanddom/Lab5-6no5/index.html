@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Form Validation Demo</title>
+</head>
+<body>
+    <h2>Form 1: onsubmit Attribute</h2>
+    <form onsubmit="return validateForm1()">
+        <label>
+            Name (required):
+            <input type="text" id="name1">
+        </label>
+        <label>
+            Age (must be number):
+            <input type="text" id="age1">
+        </label>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <h2>Form 2: reportValidity()</h2>
+    <form id="form2">
+        <label>
+            Email (required, email format):
+            <input type="email" id="email2" required>
+        </label>
+        <label>
+            Password (required):
+            <input type="password" id="password2" required>
+        </label>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script src="./main.js"></script>
+</body>
+</html>
