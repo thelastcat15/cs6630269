@@ -12,21 +12,20 @@ include "cl.php";
 </head>
 <body>
     <form action="" metod="GET">
-        <input type="text" name="name">
+        <input type="text" name="username">
         <button>submit</button>
     </form>
 
     <?php
         $stmt = $pdo->prepare("DELETE FROM member WHERE username = ?");
 
-        
         if (!empty($_GET)) 
             $keyword = $_GET["username"];
 
         $stmt->bindParam(1, $keyword);
         
         if ($stmt->execute());
-            header("location: w3.php");
+            echo "ลบ user " . $keyword . " สำเร็จ"
     ?>
 </body>
 </html>

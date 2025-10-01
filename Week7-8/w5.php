@@ -19,7 +19,6 @@ include "cl.php";
     <?php
         $stmt = $pdo->prepare("SELECT * FROM member WHERE username = ?");
 
-        
         if (!empty($_GET)) 
             $keyword = $_GET["username"];
 
@@ -29,6 +28,7 @@ include "cl.php";
 
         // cl($stmt);
 
+        $row = $stmt->fetch();
         echo "ชื่อสมาชิก: " . $row["name"] . "<br>" .
             "ที่อยู่: " . $row["address"] . "<br>" .
             "อีเมล์: " . $row["email"] . "<br>";
