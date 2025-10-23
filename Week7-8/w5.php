@@ -1,0 +1,37 @@
+<?php
+include "connect.php";
+include "cl.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" metod="GET">
+        <input type="text" name="name">
+        <button>submit</button>
+    </form>
+
+    <?php
+        $stmt = $pdo->prepare("SELECT * FROM member WHERE username = ?");
+
+        if (!empty($_GET)) 
+            $keyword = $_GET["username"];
+
+        $stmt->bindParam(1, $keyword);
+        
+        $stmt->execute();
+
+        // cl($stmt);
+
+        $row = $stmt->fetch();
+        echo "ชื่อสมาชิก: " . $row["name"] . "<br>" .
+            "ที่อยู่: " . $row["address"] . "<br>" .
+            "อีเมล์: " . $row["email"] . "<br>";
+    ?>
+</body>
+</html>
