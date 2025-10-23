@@ -29,7 +29,7 @@
             $imgPath = "";
 
             foreach($imgExt as $ext){
-                $testPath = "member_images/" . $username . "." . $ext;
+                $testPath = "../member_images/" . $username . "." . $ext;
                 if(file_exists($testPath)){
                     $imgPath = $testPath;
                     break;

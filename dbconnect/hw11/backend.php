@@ -1,7 +1,7 @@
 <?php include "../connect.php"?>
 
 <?php
-    $targetDir = "member_images/";
+    $targetDir = "../member_images/";
     if(!is_dir($targetDir)){
         mkdir($targetDir, 0755, true);
     }

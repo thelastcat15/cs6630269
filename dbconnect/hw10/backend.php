@@ -1,7 +1,7 @@
 <?php include "../connect.php"; ?>
 
 <?php
-    $targetDir = "product_images/";
+    $targetDir = "../product_images/";
     if(!is_dir($targetDir)){
         mkdir($targetDir, 0755, true);
     }
@@ -10,20 +10,23 @@
     $imagePath = $_POST["pname"] . "." . $ext;
     $targetFile = $targetDir . $imagePath;
 
+    if ($_FILES["image"]["error"] !== 0) {
+        echo "Upload error code: " . $_FILES["image"]["error"];
+        exit;
+    }
+
+
     // upload file
     if(move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)){
-        $stmt = $pdo->prepare("UPDATE product SET pname=?, pdetail=?, price=? WHERE pid=?");
+        $stmt = $pdo->prepare("INSERT INTO product (pname, pdetail, price) VALUES (?, ?, ?)");
         $stmt->bindParam(1, $_POST["pname"]);
         $stmt->bindParam(2, $_POST["pdetail"]);
         $stmt->bindParam(3, $_POST["price"]);
-        $stmt->bindParam(4, $_POST["pid"]);
 
         $stmt->execute();
-        $pid = $_POST["pid"];
+        $pid = $pdo->lastInsertId();
 
-        // redirect
         header("Location: response.php?pid=$pid&img=" . urlencode($targetFile));
-        exit;
     }else{
         echo "อัปโหลดรูปสินค้าไม่สำเร็จ";
     }

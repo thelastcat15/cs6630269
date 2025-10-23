@@ -19,7 +19,7 @@
             $imgPath = "";
 
             foreach($imgExt as $ext) {
-                $testPath = "product_images/" . $productName . "." . $ext;
+                $testPath = "../product_images/" . $productName . "." . $ext;
                 if(file_exists($testPath)){
                     $imgPath = $testPath;
                     break;
